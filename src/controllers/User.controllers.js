@@ -196,7 +196,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     };
 
     const { accessToken, newRefreshToken } =
-      await generateAccessAndRefreshToken(user._id);
+      await generateAccessAndRefreshTokens(user._id);
 
     return res
       .status(200)
@@ -238,7 +238,7 @@ const updateAccountDetail = asyncHandler(async (req,res)=>{
     throw new apierror(400 , "all filed is required")
   }
 
-  const user =await User.findByIdAndUpdate(
+  const user = await User.findByIdAndUpdate(
     req.user?._id,
     {
       $set : {
